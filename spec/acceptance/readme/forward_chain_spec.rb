@@ -3,7 +3,6 @@
 #
 
 require 'spec_helper'
-require 'lab419/core/integer'
 
 describe Forwarder do
 

@@ -3,8 +3,6 @@
 
 
 require 'spec_helper'
-require 'lab419/core/kernel'
-require 'lab419/core/integer'
 
 describe "Forwarder complex examples" do
   

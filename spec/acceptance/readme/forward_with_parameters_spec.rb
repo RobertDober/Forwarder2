@@ -2,7 +2,6 @@
 # These specs assure that the README examples work as intented.
 #
 
-require 'lab419/core/integer'
 require 'spec_helper'
 
 describe Forwarder do

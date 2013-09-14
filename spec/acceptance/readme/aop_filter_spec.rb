@@ -3,7 +3,6 @@
 #
 
 require 'spec_helper'
-require 'lab419/core/kernel'
 
 describe Forwarder do
   describe "AOP" do
