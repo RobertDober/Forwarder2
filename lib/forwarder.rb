@@ -15,9 +15,9 @@ module Forwarder
   end
 
   def forward_all *args, &blk
-    params = Forwarder::Params.new self
     opts   = args.pop
-    params.prepare_forward( args, opts, &blk )
-    params.forward!
+    args.each do | arg |
+      forward( arg, opts, &blk)
+    end
   end
 end # module Forwarder
