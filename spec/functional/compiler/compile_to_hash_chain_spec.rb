@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'helpers/compiler_helper'
 
 require 'forwarder/compiler'
 

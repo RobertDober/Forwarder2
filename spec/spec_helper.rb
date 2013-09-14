@@ -12,6 +12,7 @@ RSpec.configure do |c|
 end
 
 
+require 'ostruct'
 def let_forwarder_instance let_name, values={}, &blk
   let! let_name do
     Class.new do

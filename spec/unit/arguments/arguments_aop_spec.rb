@@ -39,6 +39,9 @@ describe Forwarder::Arguments do
       should be_before
     end
 
+    it "is not before_with_block" do
+      should_not be_before_with_block
+    end
     # !!!!!
     it "is *not* lambda, the block is used by AOP" do
       should_not be_lambda
@@ -83,4 +86,52 @@ describe Forwarder::Arguments do
       should_not be_before
     end
   end # describe 'without translation'
+
+  describe "with before_with_block" do 
+    subject do
+      described_class.new( message, to: target, before_with_block: :use_block ){ 42 }
+    end
+
+    it "has the correct message" do
+      subject.message.should eq( message )
+    end
+
+    it "has no translation, meaning the translation uses the passed in default" do
+      subject.translation(42).should eq( 42 )
+    end
+ 
+    it "has the correct target" do
+      subject.target.should eq( target )
+    end
+    
+
+    it "cannot delegate to all" do
+      should_not be_all
+    end
+    
+    it "is aop" do
+      should be_aop
+    end
+
+    it "is not after" do
+      should_not be_after
+    end
+
+    it "is before" do
+      should be_before
+    end
+
+    it "is before_with_block" do
+      should be_before_with_block
+    end
+    # !!!!!
+    it "is *not* lambda, the block is used by AOP" do
+      should_not be_lambda
+    end
+
+    it "can access before" do
+      subject.before.().should eq( 42 )
+    end
+    
+  end # describe "with before_with_block"
 end # describe Forwarder::Arguments

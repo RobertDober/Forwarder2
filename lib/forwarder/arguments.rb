@@ -25,12 +25,17 @@ module Forwarder
     end
 
     def before
-      @before ||= @params[:before]
+      @before ||= @params[:before] || @params[:before_with_block]
     end
 
     def before?
       before
     end
+
+    def before_with_block?
+      !!@params[:before_with_block]
+    end
+
 
     def chain?
       @params[ :to_chain ]
@@ -92,7 +97,7 @@ module Forwarder
 
     private
     def aop_values
-      @__aop_values__ ||= @params.values_at( :after, :before ).compact
+      @__aop_values__ ||= @params.values_at( :after, :before, :before_with_block ).compact
     end
 
     def check_for_incompatibilities!
@@ -147,7 +152,7 @@ module Forwarder
 
       if use_block?
         @after  = blk if @params[:after] == :use_block
-        @before = blk if @params[:before] == :use_block
+        @before = blk if @params[:before] == :use_block || @params[:before_with_block] == :use_block
         @lambda = @params[:with_block]
       else
         raise ArgumentError, "cannot use :with_block and a block" if
